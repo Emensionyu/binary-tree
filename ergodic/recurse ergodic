@@ -1,0 +1,33 @@
+/*三种递归遍历
+***********/
+//先序遍历
+void PreOrderTraversal(BinTree BT)
+{
+	if (BT)
+	{
+		printf("%d", BT->data);
+		PreOrderTraversal(BT->Left);
+		PreOrderTraversal(BT->Right);
+	}
+}
+//中序遍历
+
+void InOrderTraversal(BinTree BT)
+{
+	if (BT)
+	{
+		InOrderTraversal(BT->Left);
+		printf("%d", BT->data);
+		InOrderTraversal(BT->Right);
+	}
+}
+//后序遍历
+void PostOrderTraversal(BinTree BT)
+{
+	if (BT)
+	{
+		PostOrderTraversal(BT->Left);
+		PostOrderTraversal(BT->Right);
+		printf("%d", BT->data);
+	}
+}
