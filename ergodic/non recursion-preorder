@@ -1,0 +1,22 @@
+/*先序遍历非递归
+************
+这里使用系统堆栈*/
+void PreorderTraversal(BinTree BT)
+{
+	stack<BinTree> S;
+	while (BT || !S.empty())
+	{
+		while (BT)
+		{
+			S.push(BT);
+			printf("%3d", BT->data);
+			BT = BT->Left;
+		}
+		if (!S.empty())
+		{
+			BT = S.top();
+			S.pop();
+			BT = BT->Right;
+		}
+	}
+}
