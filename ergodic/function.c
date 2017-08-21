@@ -1,0 +1,17 @@
+BinTree CreateBt();
+Stack create_stack();
+int isempty_stack(Stack S);
+int push_stack(Stack S,BinTree BT);
+BinTree top_stack(Stack S);
+BinTree pop_stack(Stack S);
+QList create_queue();
+int isempty_queue(QList Q);
+void push_queue(BinTree BT,QList Q);
+BinTree pop_queue(QList Q);
+void PreOrderTraversal(BinTree BT);
+void InOrderTraversal(BinTree BT);
+void PostOrderTraversal(BinTree BT);
+void PreorderTraversal(BinTree BT);
+void InorderTraversal(BinTree BT);
+int PostorderTraversal(BinTree BT);
+void LeveOrderTraversal(BinTree BT);
