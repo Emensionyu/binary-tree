@@ -1,0 +1,38 @@
+Stack create_stack()
+{
+	Stack S = NULL;
+	S = (Stack)malloc(sizeof(struct StackNode));
+	S->Base = (BinTree*)malloc(sizeof(BinTree)*STACK_SIZE);
+	S->Top = S->Base;
+	S->size = STACK_SIZE;
+	return S;
+}
+BinTree top_stack(Stack S)
+{
+	BinTree BT = NULL;
+	if (S->Top == S->Base)
+		return NULL;
+	BT = *(S->Top - 1);
+	return BT;
+}
+int push_stack(Stack S, BinTree BT)
+{
+	if (S->Top - S->Base >= S->size)
+	{
+		S->Base = (BinTree*)realloc(S->Base, (S->size + STACK_SIZE) * sizeof(BinTree));
+		S->Top = S->Base + S->size;
+		S->size += STACK_SIZE;
+	}
+	*S->Top++ = BT;
+	return 1;
+}
+BinTree pop_stack(Stack S)
+{
+	if (S->Top == S->Base)
+		return NULL;
+	return *--S->Top;
+}
+int isempty_stack(Stack S)
+{
+	return S->Top == S->Base;
+}
