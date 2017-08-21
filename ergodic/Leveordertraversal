@@ -1,0 +1,20 @@
+//层序遍历
+void LeveOrderTraversal(BinTree BT)
+{
+	QList Q;
+	BinTree BP;
+	if (!BT)
+		return;
+	Q = create_queue();
+	BP = BT;
+	push_queue(BP, Q);
+	while (!isempty_queue(Q))
+	{
+		BP = pop_queue(Q);
+		printf("%d", BP->data);
+		if (BP->Left)
+			push_queue(BP->Left, Q);
+		if (BP->Right)
+			push_queue(BP->Right, Q);
+	}
+}
