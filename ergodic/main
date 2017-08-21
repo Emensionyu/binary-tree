@@ -1,0 +1,12 @@
+int main()
+{
+	BinTree BT;
+	BT = CreateBt();
+	InorderTraversal(BT);
+	putchar('\n');
+	LeveOrderTraversal(BT);
+	putchar('\n');
+	PostorderTraversal(BT);
+	getchar();
+	return 0;
+}
