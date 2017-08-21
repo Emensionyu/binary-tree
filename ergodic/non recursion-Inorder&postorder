@@ -1,0 +1,54 @@
+//这里都使用自定义堆栈
+//中序遍历非递归
+void InorderTraversal(BinTree BT)
+{
+	Stack S = NULL;
+	BinTree BP = NULL;
+	S = create_stack();
+	BP = BT;
+	while (BP || !isempty_stack(S))
+	{
+		if (BP)
+		{
+			push_stack(S, BP);
+			BP = BP->Left;
+		}
+		else
+		{
+			BP = pop_stack(S);
+			printf("%d", BP->data);
+			BP = BP->Right;
+		}
+	}
+}
+//后序遍历非递归
+int PostorderTraversal(BinTree BT)
+{
+	Stack S = NULL;
+	BinTree BP = NULL;
+	S = create_stack();
+	BP = BT;
+	while (1)
+	{
+		if (BP)
+		{
+			push_stack(S, BP);
+			push_stack(S, BP->Right);
+			BP = BP->Left;
+		}
+		else if (!BP)
+		{
+			BP = pop_stack(S);
+			if (!BP)
+			{
+				BP = pop_stack(S);
+				printf("%d", BP->data);
+				if (isempty_stack(S))
+					return 1;
+				BP = pop_stack(S);
+			}
+			push_stack(S, NULL);
+		}
+	}
+	return 1;
+}
