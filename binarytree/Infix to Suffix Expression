@@ -1,0 +1,124 @@
+//中缀转后缀
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct Node* stack;
+struct Node
+{
+	char data;
+	stack next;
+};
+int isempty_stack(stack S)
+{
+	return S->next == NULL;
+}
+void create_stack(stack S)
+{
+	S->next = NULL;
+}
+void push_stack(stack S, char X)
+{
+	stack T;
+	T = (stack)malloc(sizeof(struct Node));
+	if (NULL == S)
+		printf("error!");
+	else
+	{
+		T->data = X;
+		T->next = S->next;
+		S->next = T;
+	}
+}
+void pop_stack(stack S)
+{
+	stack T;
+	if (NULL == S)
+		printf("error!");
+	else
+	{
+		T = S->next;
+		S->next = S->next->next;
+		free(T);
+	}
+}
+char top_stack(stack S)
+{
+	if (!isempty_stack(S))
+		return S->next->data;
+	else
+		return NULL;
+}
+int precedence(char TopElem, char Elem)
+{
+	if (TopElem == '(') 
+		return 0;
+	if (TopElem == '+'&& Elem == '-') 
+		return 1;
+	if (TopElem == '+'&& Elem == '+') 
+		return 1;
+	if (TopElem == '-'&& Elem == '+') 
+		return 1;
+	if (TopElem == '-'&& Elem == '-') 
+		return 1;
+	if (TopElem == '*'&& Elem == '*') 
+		return 1;
+	if (TopElem == '*'&& Elem == '/') 
+		return 1;
+	if (TopElem == '*'&& Elem == '+') 
+		return 1;
+	if (TopElem == '*'&& Elem == '-') 
+		return 1;
+	if (TopElem == '/'&& Elem == '*') 
+		return 1;
+	if (TopElem == '/'&& Elem == '/') 
+		return 1;
+	if (TopElem == '/'&& Elem == '+') 
+		return 1;
+	if (TopElem == '/'&& Elem == '-') 
+		return 1;
+	return 0;
+}
+int main()
+{
+	char ch[20];
+	scanf("%s", ch);
+	getchar();
+	stack S;
+	S = (stack)malloc(sizeof(struct Node));
+	create_stack(S);
+	for (int i = 0; i < strlen(ch); i++)
+	{
+		if (ch[i] >= '0'&&ch[i] <= '9')
+			printf("%c", ch[i]);
+		else if (ch[i] == ')')
+		{
+			while (top_stack(S) != '(')
+			{
+				printf("%c", top_stack(S));
+				pop_stack(S);
+			}
+			pop_stack(S);
+		}
+		else if (ch[i] == '(')
+			push_stack(S, ch[i]);
+		else
+		{
+			if (precedence(top_stack(S), ch[i]) && !isempty_stack(S))
+			{
+				do
+				{
+					printf("%c", top_stack(S));
+					pop_stack(S);
+				} while (top_stack(S) != '(' && !isempty_stack(S));
+			}
+			push_stack(S, ch[i]);
+		}
+	}
+	while (!isempty_stack(S))
+	{
+		printf("%c", top_stack(S));
+		pop_stack(S);
+	}
+	getchar();
+	return 0;
+}
