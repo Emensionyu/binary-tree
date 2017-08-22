@@ -1,0 +1,124 @@
+5.使用栈计算逆波兰（简单的四则运算）：
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int num = 0;
+struct Node
+{
+	int data;
+	struct Node *next;
+};
+typedef struct Node* node;
+void create(node n)
+{
+	if (NULL == n)
+	{
+		printf("error!");
+	}
+	else
+	{
+		n->data = 0;
+		n->next = NULL;
+	}
+}
+void push(node n,int x)
+{
+	node temp;
+	temp =(node)malloc(sizeof(struct Node));
+	if (NULL == temp)
+	{
+		return ;
+	}
+	temp->data = x;
+	temp->next = n->next;
+	n->next = temp;
+	num++;
+}
+int top(node n)
+{
+	return n->next->data;
+}
+void pop(node n)
+{
+	int d;
+	node temp;
+	d = n->data;
+	temp = n->next;
+	n->next = n->next->next;
+	free(temp);
+	num--;
+}
+int add(int a,int b)
+{
+	return a + b;
+}
+int sub(int a, int b)
+{
+	return a - b;
+}
+int mul(int a, int b)
+{
+	return a * b;
+}
+int chu(int a, int b)
+{
+	return a / b;
+}
+int main()
+{
+	node n;
+	n = (node)malloc(sizeof(struct Node));
+	create(n);
+	char ch[100] = {0};
+	scanf("%s", ch);
+	getchar();
+	int x = 0, y = 0, z = 0;
+	for (int i = 0; i < strlen(ch); i++)
+	{
+		if (ch[i] >= '0'&&ch[i] <= '9')
+		{
+			 push(n, ch[i] - 48);
+		}
+		else
+		{
+			if (num < 2)
+				break;
+			else
+			{
+				y = top(n);
+				pop(n);
+				z = top(n);
+				pop(n);
+			}
+			switch (ch[i])
+			{
+			case'+':
+				x = add(y, z);
+				push(n, x);
+				break;
+			case'-':
+				x = sub(y, z);
+				push(n, x);
+				break;
+			case'*':
+				x = mul(y, z);
+				push(n, x);
+				break;
+			case'/':
+				x = chu(y, z);
+				push(n, x);
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	if (num == 1)
+		printf("%d\n",x);
+	else
+	{
+		printf("error!");
+	}
+	getchar();
+	return 0;
+}
