@@ -1,0 +1,7 @@
+typedef struct SearchTree *BinTree;
+struct SearchTree
+{
+	ElementType Data;
+	BinTree Lchild;
+	BinTree Rchild;
+};
