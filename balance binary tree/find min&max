@@ -1,0 +1,26 @@
+BinTree FindMin(BinTree BT)
+{
+	if (NULL == BT)
+	{
+		printf("error!");
+		return NULL;
+	}
+	else if (!BT->Lchild)
+		FindMin(BT->Lchild);
+	else
+		return BT;
+}
+/* 
+*/
+BinTree FindMax(BinTree BT)
+{
+	if (NULL == BT)
+	{
+		printf("error!");
+		return NULL;
+	}
+	else if (!BT->Rchild)
+		FindMax(BT->Rchild);
+	else
+		return BT;
+}
