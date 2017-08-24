@@ -1,0 +1,21 @@
+//递归查找
+BinTree Find_tree(BinTree BT, ElementType X)
+{
+	if (NULL == BT)
+	{
+		printf("error!");
+		return NULL;
+	}
+	while (BT)
+	{
+		if (BT->Data > X)
+			BT = BT->Lchild;
+		else if (BT->Data < X)
+			BT = BT->Rchild;
+		else
+		{
+			printf("not found!");
+			return BT;
+		}
+	}
+}
