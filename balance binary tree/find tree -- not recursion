@@ -1,0 +1,16 @@
+//查找函数的返回值为找到的结点的地址
+//查找非递归
+BinTree find_tree(BinTree BT,ElementType X)
+{
+	if (NULL == BT)
+	{
+		printf("error!");
+		return NULL;
+	}
+	if (X > BT->Data)
+		return find_tree(BT->Rchild, X);
+	else if (X < BT->Data)
+		return find_tree(BT->Lchild, X);
+	else
+		return BT;
+}
