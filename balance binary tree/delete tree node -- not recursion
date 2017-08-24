@@ -1,0 +1,41 @@
+/*
+非递归删除
+*/
+//非递归删除，BT为需要删除的结点的指针
+bool Delete_tree(BinTree *BT)
+{
+	BinTree P, Q;
+	if (!(*BT)->Lchild && !(*BT)->Rchild)	//p为叶结点
+		BT = NULL;
+	//有一个结点
+	else if (!(*BT)->Lchild)
+	{
+		P = *BT;
+		*BT = (*BT)->Rchild;
+		free(BT);
+	}
+	else if (!(*BT)->Rchild)
+	{
+		P = *BT;
+		*BT = (*BT)->Lchild;
+		free(*BT);
+	}
+	//有两个结点 可Lchild的Max，也可Rchild的Min
+	else
+	{
+		P = (*BT);
+		Q = (*BT)->Lchild;
+		while (Q->Rchild)
+		{
+			P = Q;
+			Q = Q->Rchild;
+		}
+		(*BT)->Data = Q->Data;
+		if (P != *BT)
+			P->Rchild = Q->Lchild;
+		else
+			P->Lchild = Q->Lchild;
+		free(Q);
+	}
+	return true;
+}
