@@ -1,19 +1,17 @@
-void PreorderTraversal(BinTree BT)
+BinTree CreateBt()
 {
-	stack<BinTree> S;
-	while (BT || !S.empty())
+	BinTree BT = NULL;
+	ElementType a;
+	scanf("%d", &a);
+	getchar();
+	if (a != 0)
 	{
-		while (BT)
-		{
-			S.push(BT);
-			printf("%3d", BT->Data);
-			BT = BT->Lchild;
-		}
-		if (!S.empty())
-		{
-			BT = S.top();
-			S.pop();
-			BT = BT->Rchild;
-		}
+		BT = (BinTree)malloc(sizeof(struct SearchTree));
+		BT->Data = a;
+		BT->Lchild = NULL;
+		BT->Rchild = NULL;
+		BT->Lchild = CreateBt();
+		BT->Rchild = CreateBt();
 	}
+	return BT;
 }
