@@ -1,0 +1,35 @@
+/*
+递归删除
+*/
+BinTree delete_tree(BinTree BT, ElementType X)
+{
+	BinTree P;
+	if (!BT)
+		printf("error!");
+	else
+	{
+		if (X < BT->Data)
+			BT->Lchild = delete_tree(BT->Lchild, X);
+		else if (X > BT->Data)
+			BT->Rchild = delete_tree(BT->Rchild, X);
+		else
+		{
+			if (BT->Lchild&&BT->Rchild)
+			{
+				P = FindMin(BT->Rchild);
+				BT->Data = P->Data;
+				BT->Rchild = delete_tree(BT->Rchild, BT->Data);
+			}
+			else
+			{
+				P = BT;
+				if (!BT->Lchild)
+					BT = BT->Rchild;
+				else
+					BT = BT->Lchild;
+				free(P);
+			}
+		}
+	}
+	return BT;
+}
