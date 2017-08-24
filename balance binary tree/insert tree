@@ -1,0 +1,19 @@
+/*
+*/
+BinTree insert_tree(BinTree BT, ElementType X)
+{
+	if (NULL == BT)
+	{
+		BT = (BinTree)malloc(sizeof(struct SearchTree));
+		BT->Data = X;
+		BT->Lchild = BT->Rchild = NULL;
+	}
+	else
+	{
+		if (X < BT->Data)
+			BT->Lchild = insert_tree(BT->Lchild, X);
+		else if (X > BT->Data)
+			BT->Rchild = insert_tree(BT->Rchild, X);
+	}
+	return BT;
+}
