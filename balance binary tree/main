@@ -1,0 +1,17 @@
+int main()
+{
+	BinTree BT;
+	BT = CreateBt();
+	PreorderTraversal(BT);
+	putchar('\n');
+	BT = insert_tree(BT, 3);
+	PreorderTraversal(BT);
+	putchar('\n');
+	BT = find_tree(BT, 3);
+	PreorderTraversal(BT);
+	putchar('\n');
+	BT = delete_tree(BT, 3);
+	PreorderTraversal(BT);
+	getchar();
+	return 0;
+}
