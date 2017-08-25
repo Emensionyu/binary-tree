@@ -1,0 +1,4 @@
+bool isfull_heap(MaxHeap H)
+{
+	return (H->size == H->Capacity);
+}
