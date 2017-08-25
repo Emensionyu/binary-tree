@@ -1,0 +1,30 @@
+int main()
+{
+	MaxHeap H;
+	H = create_heap(8);
+	H->Elements[1] = 7;
+	H->Elements[2] = 5;
+	H->Elements[3] = 4;
+	H->Elements[4] = 3;
+	H->Elements[5] = 2;
+	H->Elements[6] = 1;
+	H->size = 6;
+	for (int i = 1; i < 7; i++)
+	{
+		printf("%d", H->Elements[i]);
+	}
+	putchar('\n');
+	insert_heap(H, 6);
+	for (int i = 1; i < 8; i++)
+	{
+		printf("%d", H->Elements[i]);
+	}
+	putchar('\n');
+	delete_heap(H);
+	for (int i = 1; i < 7; i++)
+	{
+		printf("%d", H->Elements[i]);
+	}
+	getchar();
+	return 0;
+}
