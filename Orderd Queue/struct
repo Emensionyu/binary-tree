@@ -1,0 +1,7 @@
+typedef struct HeapStruct* MaxHeap;
+struct HeapStruct
+{
+	ElementType *Elements;	//用数组来存储堆中元素
+	int size;	//堆当前的元素个数
+	int Capacity;	//堆的最大容量
+};
