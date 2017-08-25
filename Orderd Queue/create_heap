@@ -1,0 +1,10 @@
+//创建容量为Maxsize的最大堆
+MaxHeap create_heap(int Maxsize)
+{
+	MaxHeap H;
+	H = (MaxHeap)malloc(sizeof(struct HeapStruct));
+	H->Elements = (ElementType*)malloc((Maxsize + 1) * sizeof(ElementType));
+	H->size = 0;
+	H->Capacity = Maxsize;
+	return H;
+}
