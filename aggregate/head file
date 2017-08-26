@@ -1,0 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define ElementType int
+//默认元素个数为10
+#define MaxSize 10
