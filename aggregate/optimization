@@ -1,0 +1,27 @@
+//按秩归并和路径压缩
+ /*按秩归并：比规模，将小树贴到大树上
+这里有S[root].parent=-MaxSize
+*/
+void _Union(SetType S[], ElementType root1, ElementType root2)
+{
+	if (S[root2].parent > S[root1].parent)
+	{
+		S[root2].parent += S[root1].parent;
+		S[root1].parent= root2;
+	}
+	else
+	{
+		S[root1].parent += S[root2].parent;
+		S[root2].parent = root1;
+	}
+}
+/*路径压缩：
+先找到根，把根变成X的父结点，再返回根
+*/
+int _Find(SetType S[], ElementType X)
+{
+	if (S[X].parent < 0)
+		return X;
+	else
+		return S[X].parent = _Find(S, S[X].parent);
+}
