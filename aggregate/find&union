@@ -1,0 +1,19 @@
+//查找：查找集合中的元素
+int Find(SetType S[], ElementType X)
+{
+	int i;
+	for (i = 0; i < MaxSize&&S[i].Data != X; i++);
+	if (i >= MaxSize)
+		return -1;
+	for (; S[i].parent >= 0; i = S[i].parent);
+		return i;
+}
+//联合：这里默认将root2接到root1下
+int Union(SetType S[], ElementType X1, ElementType X2)
+{
+	int root1, root2;
+	root1 = Find(S, X1);
+	root2 = Find(S, X2);
+	if (root1 != root2)
+		S[root2].parent = root1;
+}
