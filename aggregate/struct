@@ -1,0 +1,7 @@
+//集合的简化表式,用树表示结构，用数组表示数据
+//双亲表示法：子结点可以指向父节点
+typedef struct
+{
+	ElementType Data;	//结点的数据
+	int parent;			//父节点的下标
+}SetType;
