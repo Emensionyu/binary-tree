@@ -1,0 +1,10 @@
+int main()
+{
+	AVLTree A;
+	A = CreateBt();
+	PreorderTraversal(A);
+	putchar('\n');
+	AVLTree B = DoubleLeftRightRotation(A);
+	PreorderTraversal(B);
+	getchar();
+}
