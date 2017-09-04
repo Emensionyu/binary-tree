@@ -1,0 +1,8 @@
+typedef struct AVLNode* AVLTree;
+struct AVLNode
+{
+	ElementType Data;	/*结点数据*/
+	AVLTree Left;		/*指向左子树*/
+	AVLTree Right;		/*指向右子树*/
+	int Height;			/*树高*/
+};
