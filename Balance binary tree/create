@@ -1,0 +1,18 @@
+AVLTree CreateBt()
+{
+	AVLTree BT = NULL;
+	ElementType a;
+	scanf("%d", &a);
+	getchar();
+	if (a != 0)
+	{
+		BT = (AVLTree)malloc(sizeof(struct AVLNode));
+		BT->Data = a;
+		BT->Left = NULL;
+		BT->Right = NULL;
+		BT->Left = CreateBt();
+		BT->Right = CreateBt();
+		BT->Height++;
+	}
+	return BT;
+}
