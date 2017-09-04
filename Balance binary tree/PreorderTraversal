@@ -1,0 +1,19 @@
+void PreorderTraversal(AVLTree BT)
+{
+	stack<AVLTree> S;
+	while (BT || !S.empty())
+	{
+		while (BT)
+		{
+			S.push(BT);
+			printf("%3d", BT->Data);
+			BT = BT->Left;
+		}
+		if (!S.empty())
+		{
+			BT = S.top();
+			S.pop();
+			BT = BT->Right;
+		}
+	}
+}
