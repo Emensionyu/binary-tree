@@ -1,0 +1,69 @@
+bool Delete(AVLTree A, ElementType X)
+{
+	AVLTree T, S;
+	if (!A)
+		return false;
+	else if (A->Data == X)
+	{
+		if (!A->Left && !A->Right)
+			A = NULL;
+		else if (A->Left != NULL&&A->Right != NULL)
+			A = A->Left;
+		else if (A->Right != NULL&&A->Left != NULL)
+			A = A->Right;
+		else
+		{
+			if (GetHeight(A->Left) > GetHeight(A->Right))
+			{
+				S = A->Left;
+				while (S->Right)
+					S = S->Right;
+				A->Data = S->Data;
+				Delete((A->Left), S->Data);
+			}
+			else
+			{
+				T = A->Right;
+				while (T->Left)
+					T = T->Right;
+				A->Data = T->Data;
+				Delete((A->Right), T->Data);
+			}
+		}
+		return true;
+	}
+	else if (X < A->Data)
+	{
+		if (!Delete((A->Left), X))
+			return false;
+		else
+		{
+			A->Height = Max(GetHeight(A->Left), GetHeight(A->Right)) + 1;
+			if (GetHeight(A->Left) - GetHeight(A->Right) == -2)
+			{
+				if (GetHeight(A->Left->Left) > GetHeight(A->Left->Right))
+					SingleLeftRotation(A);
+				else
+					DoubleLeftRightRotation(A);
+			}
+		}
+		return true;
+	}
+	else
+	{
+		if (!Delete((A->Right), X))
+			return false;
+		else
+		{
+			A->Height = Max(GetHeight(A->Left), GetHeight(A->Right)) + 1;
+			if (GetHeight(A->Left) - GetHeight(A->Right) == 2)
+			{
+				if (GetHeight(A->Right->Left) > GetHeight(A->Right->Right))
+					DoubleRightLeftRotation(A);
+				else
+					SingleRightRotation(A);
+			}
+		}
+		return true;
+	}
+}
