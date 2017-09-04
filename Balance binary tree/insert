@@ -1,0 +1,35 @@
+AVLTree Insert(AVLTree A, ElementType X)
+{
+	if (isempty(A))
+	{
+		A = (AVLTree)malloc(sizeof(struct AVLNode));
+		A->Data = X;
+		A->Height = 0;
+		A->Left = A->Right = NULL;
+	}
+	else if (X < A->Data)
+	{
+		A->Left = Insert(A->Left, X);
+		/*如果需要左旋*/
+		if (GetHeight(A->Left) - GetHeight(A->Right) == 2)
+			if (X < A->Left->Data)
+				A = SingleLeftRotation(A);
+			else
+				A = DoubleLeftRightRotation(A);
+		/*else if插入结束*/
+	}
+	else if (X > A->Data)
+	{
+		A->Right = Insert(A->Right, X);
+		/*如果需要右旋*/
+		if (GetHeight(A->Left) - GetHeight(A->Right) == -2)
+			if (X > A->Right->Data)
+				A = SingleRightRotation(A);
+			else
+				A = DoubleRightLeftRotation(A);
+		/*else if插入结束*/
+	}
+	/*更新树高*/
+	A->Height = Max(GetHeight(A->Left), GetHeight(A->Right)) + 1;
+	return A;
+}
