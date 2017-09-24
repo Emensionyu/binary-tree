@@ -1,0 +1,17 @@
+BinTree CreateBt()
+{
+	BinTree BT = NULL;
+	int a;
+	scanf("%d", &a);
+	getchar();
+	if (a != 0)
+	{
+		BT = (BinTree)malloc(sizeof(struct TreeNode));
+		BT->data = a;
+		BT->Left = NULL;
+		BT->Right = NULL;
+		BT->Left = CreateBt();
+		BT->Right = CreateBt();
+	}
+	return BT;
+}
