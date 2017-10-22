@@ -14,8 +14,14 @@ BinTree Find_tree(BinTree BT, ElementType X)
 			BT = BT->Rchild;
 		else
 		{
-			printf("not found!");
-			return BT;
+			if (BT->Data==X)
+				return BT;
+			else
+			{
+				printf("not found");
+				return BT;
+			}
+				
 		}
 	}
 }
